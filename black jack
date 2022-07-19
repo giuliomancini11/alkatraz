@@ -1,0 +1,444 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
+
+
+int main()
+{
+    printf ("Benvenuto al casino' di San Giovanni!\nVuoi iniziare una partita di blackjack?\n(1/0)");
+    int rispostautente;
+    scanf ("%d", &rispostautente);
+    if (rispostautente == 1 )
+    {
+        printf ("Iniziamo allora!\n");
+        sleep (1);
+        //definiamo due variabili utilizzate per la creazione delle carte.
+        char seme[4][10]  = {"quadri", "cuori", "picche", "fiori"};
+        char carta[13][10] = {"asso","due","tre","quattro","cinque","sei","sette","otto","nove","dieci","J","Q","K"};
+        srand(time(NULL));
+        //definiamo i valori delle due variabili per ogni carta creata per il giocatore.
+        int a1 = rand() % 4;
+        int b1 = rand() % 13;
+        int a2 = rand() % 4;
+        int b2 = rand() % 13;
+        int a3 = rand() % 4;
+        int b3 = rand() % 13;
+        int a4 = rand() % 4;
+        int b4 = rand() % 13;
+        int a5 = rand() % 4;
+        int b5 = rand() % 13;
+        //attraverso dei cicli while facciamo in modo che non venga mai pescata una carta gia creata.
+        while (a2==a1&&b2==b1)
+        {
+            a2 = rand() % 4;
+            b2 = rand() % 13;
+        }
+        while ((a3==a2&&b3==b2)||(a3==a1&&b3==b1))
+        {
+            a3 = rand() % 4;
+            b3 = rand() % 13;
+        }
+        while ((a4==a3&&b4==b3)||(a4==a2&&b4==b2)||(a4==a1&&b4==b1))
+        {
+            a4 = rand() % 4;
+            b4 = rand() % 13;
+        }
+        while ((a5==a4&&b5==b4)||(a4==a3&&b4==b3)||(a4==a2&&b4==b2)||(a4==a1&&b4==b1))
+        {
+            a5 = rand() % 4;
+            b5 = rand() % 13;
+        }
+        //definiamo il valore da assegnare alla carta in base alla variabile gia definita precedentemente. Dall'asso al dieci viene assegnato il valore numerico corrispondente, mentre alle figure viene assegnato il valore 10 come da regolamento.
+        int valore_carta1 = (b1>9)? 10 : b1+1;
+        int valore_carta2 = (b2>9)? 10 : b2+1;
+        int valore_carta3 = (b3>9)? 10 : b3+1;
+        int valore_carta4 = (b4>9)? 10 : b4+1;
+        int valore_carta5 = (b5>9)? 10 : b5+1;
+        //definiamo la somma delle carte pencate dal giocatore fino al turno corrispondente.
+        int somma_utente1 = valore_carta1 + valore_carta2;
+        int somma_utente2 = somma_utente1 + valore_carta3;
+        int somma_utente3 = somma_utente2 + valore_carta4;
+        int somma_utente4 = somma_utente3 + valore_carta5;
+
+
+
+        //definiamo i valori delle due variabili per ogni carta creata per il banco.
+        int c1 = rand() % 4;
+        int d1 = rand() % 13;
+        int c2 = rand() % 4;
+        int d2 = rand() % 13;
+        int c3 = rand() % 4;
+        int d3 = rand() % 13;
+        int c4 = rand() % 4;
+        int d4 = rand() % 13;
+        int c5 = rand() % 4;
+        int d5 = rand() % 13;
+
+
+        //attraverso dei cicli while facciamo in modo che non venga mai pescata una carta gia creata.
+        while ((c1==a1&&d1==b1)||(c1==a2&&d1==b2)||(c1==a3&&d1==b3)||(c1==a4&&d1==b4)||(c1==a5&&d1==b5))
+        {
+            c1 = rand() % 4;
+            d1 = rand() % 13;
+        }
+        while ((c2==c1&&d2==d1)||(c1==a1&&d1==b1)||(c1==a2&&d1==b2)||(c1==a3&&d1==b3)||(c1==a4&&d1==b4)||(c1==a5&&d1==b5))
+        {
+            c2 = rand() % 4;
+            d2 = rand() % 13;
+        }
+        while ((c3==c2&&d3==d2)||(c2==c1&&d2==d1)||(c1==a1&&d1==b1)||(c1==a2&&d1==b2)||(c1==a3&&d1==b3)||(c1==a4&&d1==b4)||(c1==a5&&d1==b5))
+        {
+            c3 = rand() % 4;
+            d3 = rand() % 13;
+        }
+        while ((c4==c3&&d4==d3)||(c3==c2&&d3==d2)||(c2==c1&&d2==d1)||(c1==a1&&d1==b1)||(c1==a2&&d1==b2)||(c1==a3&&d1==b3)||(c1==a4&&d1==b4)||(c1==a5&&d1==b5))
+        {
+            c3 = rand() % 4;
+            d3 = rand() % 13;
+        }
+        while ((c4==c3&&d4==d3)||(c3==c2&&d3==d2)||(c2==c1&&d2==d1)||(c1==a1&&d1==b1)||(c1==a2&&d1==b2)||(c1==a3&&d1==b3)||(c1==a4&&d1==b4)||(c1==a5&&d1==b5))
+        {
+            c3 = rand() % 4;
+            d3 = rand() % 13;
+        }
+        while ((c4==c3&&d4==d3)||(c3==c2&&d3==d2)||(c2==c1&&d2==d1)||(c1==a1&&d1==b1)||(c1==a2&&d1==b2)||(c1==a3&&d1==b3)||(c1==a4&&d1==b4)||(c1==a5&&d1==b5))
+        {
+            c4 = rand() % 4;
+            d4 = rand() % 13;
+        }
+        while ((c5==c4&&d5==d4)||(c4==c3&&d4==d3)||(c3==c2&&d3==d2)||(c2==c1&&d2==d1)||(c1==a1&&d1==b1)||(c1==a2&&d1==b2)||(c1==a3&&d1==b3)||(c1==a4&&d1==b4)||(c1==a5&&d1==b5))
+        {
+            c5 = rand() % 4;
+            d5 = rand() % 13;
+        }
+        //definiamo il valore da assegnare alla carta in base alla variabile gia definita precedentemente.
+        int valore_cartabanco1 = (d1>9)? 10 : d1+1;
+        int valore_cartabanco2 = (d2>9)? 10 : d2+1;
+        int valore_cartabanco3 = (d3>9)? 10 : d3+1;
+        int valore_cartabanco4 = (d4>9)? 10 : d4+1;
+        int valore_cartabanco5 = (d5>9)? 10 : d5+1;
+        //definiamo la somma delle carte pencate dal banco fino al turno corrispondente.
+        int somma_banco1 = valore_cartabanco1 + valore_cartabanco2;
+        int somma_banco2 = somma_banco1 + valore_cartabanco3;
+        int somma_banco3 = somma_banco2 + valore_cartabanco4;
+        int somma_banco4 = somma_banco3 + valore_cartabanco5;
+
+        /*attraverso una serie di istruzioni if annidate stampiamo ad ogni turno le carte pescate dal giocatore e diamo la possibilità di scegliere carta o di stare tramite uno scanf.
+        alla scelta del giocatore di stare vengono stampate le carte pescate dal banco e la somma corrispondente.
+        seguendo il regolamente del gioco si conclude con la stampa dell'esito della partita*/
+
+        printf ("Carta 1: %s di %s\nCarta 2: %s di %s\nLa somma e' %d\n", carta[b1], seme[a1], carta [b2], seme[a2], somma_utente1);
+        sleep (2);
+        printf ("Carta banco: %s di %s\n", carta[d1], seme[c1]);
+        sleep (2);
+        printf ("Digitare 1 per chiedere carta, 0 per stare\n");
+        scanf ("%d", &rispostautente);
+        if (rispostautente == 1)
+        {
+             printf ("Carta 1: %s di %s\nCarta 2: %s di %s\nCarta 3: %s di %s\nLa somma e' %d\n", carta[b1], seme[a1], carta [b2], seme[a2], carta[b3], seme[a3], somma_utente2);
+             sleep (2);
+             if (somma_utente2>21)
+             {
+                 printf("Hai sballato!\n");
+                 return 0;
+             }
+             else
+             {
+                 printf("Digitare 1 per chiedere carta, 0 per stare\n");
+                 sleep (2);
+                 scanf ("%d", &rispostautente);
+                 if (rispostautente == 1)
+                 {
+                     printf ("Carta 1: %s di %s\nCarta 2: %s di %s\nCarta 3: %s di %s\nCarta 4: %s di %s\nLa somma e' %d\n", carta[b1], seme[a1], carta [b2], seme[a2], carta[b3], seme[a3], carta[b4], seme[a4], somma_utente3);
+                     sleep(2);
+                     if (somma_utente3>21)
+                     {
+                         printf("Hai sballato!\n");
+                         return 0;
+                     }
+                     else
+                     {
+                         printf("Digitare 1 per chiedere carta, 0 per stare\n");
+                         sleep (2);
+                         scanf ("%d", &rispostautente);
+                         if (rispostautente == 1)
+                         {
+                             printf ("Carta 1: %s di %s\nCarta 2: %s di %s\nCarta 3: %s di %s\nCarta 4: %s di %s\nCarta 5: %s di %s\nLa somma e' %d\n", carta[b1], seme[a1], carta [b2], seme[a2], carta[b3], seme[a3], carta[b4], seme[a4], carta[b5], seme[a5], somma_utente4);
+                             sleep(2);
+                             if (somma_utente4>21)
+                             {
+                                printf("Hai sballato!\n");
+                                return 0;
+                             }
+                             else
+                             {
+                                 if ((somma_banco1>=17)||(somma_banco1>=somma_utente4))
+                                    {
+                                    printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], somma_banco1);
+                                    sleep(2);
+                                    if (somma_banco1>=somma_utente4)
+                                    {
+                                        printf ("Hai perso!\n");
+                                        return 0;
+                                    }
+                                    else
+                                    {
+                                        printf ("Hai vinto!\n");
+                                        return 0;
+                                    }
+                                    }
+                                    else if ((somma_banco2>=17)||(somma_banco2>=somma_utente4))
+                                    {
+                                    printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], somma_banco2);
+                                    sleep(2);
+                                    if ((somma_banco2>=somma_utente4)&&(somma_banco2<22))
+                                    {
+                                        printf ("Hai perso!\n");
+                                        return 0;
+                                    }
+                                    else
+                                    {
+                                        printf ("Hai vinto!\n");
+                                        return 0;
+                                    }
+                                    }
+                                    else if ((somma_banco3>=17)||(somma_banco3>=somma_utente4))
+                                    {
+                                    printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], somma_banco3);
+                                    sleep(2);
+                                    if ((somma_banco3>=somma_utente4)&&(somma_banco3<22))
+                                    {
+                                        printf ("Hai perso!\n");
+                                        return 0;
+                                    }
+                                    else
+                                    {
+                                        printf ("Hai vinto!\n");
+                                        return 0;
+                                    }
+
+                                    }
+                                else if ((somma_banco4>=17)||(somma_banco4>=somma_utente4))
+                                {
+                                    printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nCarta banco 5: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], carta[d5], seme[c5], somma_banco4);
+                                    sleep(2);
+                                    if ((somma_banco4>=somma_utente4)&&(somma_banco4<22))
+                                    {
+                                        printf ("Hai perso!\n");
+                                        return 0;
+                                    }
+                                    else
+                                    {
+                                        printf ("Hai vinto!\n");
+                                        return 0;
+                                    }
+                             }
+                         }
+                         }
+                         else
+                         {
+                            if ((somma_banco1>=17)||(somma_banco1>=somma_utente3))
+                            {
+                            printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], somma_banco1);
+                            sleep(2);
+                            if (somma_banco1>=somma_utente3)
+                            {
+                                printf ("Hai perso!\n");
+                                return 0;
+                            }
+                            else
+                            {
+                                printf ("Hai vinto!\n");
+                                return 0;
+                            }
+                            }
+                            else if ((somma_banco2>=17)||(somma_banco2>=somma_utente3))
+                            {
+                            printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], somma_banco2);
+                            sleep(2);
+                            if ((somma_banco2>=somma_utente3)&&(somma_banco2<22))
+                            {
+                                printf ("Hai perso!\n");
+                                return 0;
+                            }
+                            else
+                            {
+                                printf ("Hai vinto!\n");
+                                return 0;
+                            }
+                            }
+                            else if ((somma_banco3>=17)||(somma_banco3>=somma_utente3))
+                            {
+                            printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], somma_banco3);
+                            sleep(2);
+                            if ((somma_banco3>=somma_utente3)&&(somma_banco3<22))
+                            {
+                                printf ("Hai perso!\n");
+                                return 0;
+                            }
+                            else
+                            {
+                                printf ("Hai vinto!\n");
+                                return 0;
+                            }
+
+                            }
+                            else if ((somma_banco4>=17)||(somma_banco4>=somma_utente3))
+                            {
+                            printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nCarta banco 5: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], carta[d5], seme[c5], somma_banco4);
+                            sleep(2);
+                            if ((somma_banco4>=somma_utente3)&&(somma_banco4<22))
+                            {
+                                printf ("Hai perso!\n");
+                                return 0;
+                            }
+                            else
+                            {
+                                printf ("Hai vinto!\n");
+                                return 0;
+                            }
+                            }
+                        }
+
+                    }
+                 }
+                 else
+                {
+                        if ((somma_banco1>=17)||(somma_banco1>=somma_utente2))
+                {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], somma_banco1);
+                sleep(2);
+                if (somma_banco1>=somma_utente2)
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+                }
+                else if ((somma_banco2>=17)||(somma_banco2>=somma_utente2))
+                {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], somma_banco2);
+                sleep(2);
+                if ((somma_banco2>=somma_utente2)&&(somma_banco2<22))
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+            }
+            else if ((somma_banco3>=17)||(somma_banco3>=somma_utente2))
+            {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], somma_banco3);
+                sleep(2);
+                if ((somma_banco3>=somma_utente2)&&(somma_banco3<22))
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+
+            }
+            else if ((somma_banco4>=17)||(somma_banco4>=somma_utente2))
+            {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nCarta banco 5: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], carta[d5], seme[c5], somma_banco4);
+                sleep(2);
+                if ((somma_banco4>=somma_utente2)&&(somma_banco4<22))
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+                    }
+
+             }
+        }
+        }
+        else
+        {
+            if ((somma_banco1>=17)||(somma_banco1>=somma_utente1))
+            {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], somma_banco1);
+                sleep(2);
+                if (somma_banco1>=somma_utente1)
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+            }
+            else if ((somma_banco2>=17)||(somma_banco2>=somma_utente1))
+            {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], somma_banco2);
+                sleep(2);
+                if ((somma_banco2>=somma_utente1)&&(somma_banco2<22))
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+            }
+            else if ((somma_banco3>=17)||(somma_banco3>=somma_utente1))
+            {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], somma_banco3);
+                sleep(2);
+                if ((somma_banco3>=somma_utente1)&&(somma_banco3<22))
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+
+            }
+            else if ((somma_banco4>=17)||(somma_banco4>=somma_utente1))
+            {
+                printf ("Carta banco 1: %s di %s\nCarta banco 2: %s di %s\nCarta banco 3: %s di %s\nCarta banco 4: %s di %s\nCarta banco 5: %s di %s\nSomma banco: %d\n", carta[d1], seme[c1], carta[d2], seme[c2], carta[d3], seme[c3], carta[d4], seme[c4], carta[d5], seme[c5], somma_banco4);
+                sleep(2);
+                if ((somma_banco4>=somma_utente1)&&(somma_banco4<22))
+                {
+                    printf ("Hai perso!\n");
+                    return 0;
+                }
+                else
+                {
+                    printf ("Hai vinto!\n");
+                    return 0;
+                }
+            }
+        }
+    }
+
+    else
+    {
+        return 0;
+    }
+}
+
